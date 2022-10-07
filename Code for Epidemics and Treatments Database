@@ -1,0 +1,51 @@
+Code for Database
+CREATE SCHEMA ‘epidemics&treatments’ ;
+
+CREATE TABLE `epidemics&treatments`.`epidemic` (
+  `idEpidemic` INT NOT NULL,
+  `Epidemic name` VARCHAR(45) NULL,
+  `Epidemic signs` VARCHAR(45) NULL,
+  `Epidemic symptoms` VARCHAR(45) NULL,
+  PRIMARY KEY (`idEpidemic`));
+  
+CREATE TABLE `epidemics&treatments`.`treatment` (
+  `idTreatment` INT NOT NULL,
+  `Treatment options` VARCHAR(255) NULL,
+  `idEpidemic` INT NULL,
+  PRIMARY KEY (`idTreatment`),
+  INDEX `idEpidemic_idx` (`idEpidemic` ASC),
+  CONSTRAINT `idpEidemic`
+    FOREIGN KEY (`idEpidemic`)
+    REFERENCES `epidemics&treatments`.`epidemic` (`idEpidemic`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+CREATE TABLE `epidemics&treatments`.`doctor` (
+  `idDoctor` INT NOT NULL,
+  `Doctor first name` VARCHAR(45) NULL,
+  `Doctor last name` VARCHAR(45) NULL,
+  `idTreatment` INT NULL,
+  PRIMARY KEY (`idDoctor`),
+  INDEX `idTreatment_idx` (`idTreatment` ASC),
+  CONSTRAINT `idTreatment`
+    FOREIGN KEY (`idTreatment`)
+    REFERENCES `epidemics&treatments`.`treatment` (`idTreatment`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+Code for Insertion of Data
+INSERT INTO `epidemics&treatments`.`epidemic` (`idEpidemic`, `Epidemic name`, `Epidemic signs`, `Epidemic symptoms`) VALUES ‘1’, ‘Bubonic plague’ ‘swollen lymph nodes’, 'fever, headaches, vomiting'); 
+INSERT INTO `epidemics&treatments`.`epidemic` (`idEpidemic`, `Epidemic name`, `Epidemic signs`, `Epidemic symptoms`) VALUES ('2', 'Measles', 'white spots in mouth, red rash on face', 'cough, runny nose, red eyes');
+INSERT INTO `epidemics&treatments`.`epidemic` (`idEpidemic`, `Epidemic name`, `Epidemic signs`, `Epidemic symptoms`) VALUES ('3', 'Ebola', 'muscular pain', 'fever, sore throat, headaches');
+INSERT INTO `epidemics&treatments`.`epidemic` (`idEpidemic`, `Epidemic name`, `Epidemic signs`, `Epidemic symptoms`) VALUES ('4', 'Yellow Fever', 'muscle pain', 'fever, chills, loss of appetite, nausea');
+INSERT INTO `epidemics&treatments`.`epidemic` (`idEpidemic`, `Epidemic name`, `Epidemic signs`, `Epidemic symptoms`) VALUES ('5', 'Meningitis', 'neck stiffness', 'headache, fever, confusion, vomiting');
+INSERT INTO ‘epidemics&treatments’.‘treatment’ (`idTreatment`, `Treatment options`, `idEpidemic`) VALUES (1, 'aminoglycosides, streptomycin, gentamicin, tetracycline’s, fluoroquinolone, ciprofloxacin', 1);
+INSERT INTO `epidemics&treatments`.`treatment` (`idTreatment`, `Treatment options`, `idEpidemic`) VALUES ('2', 'rest', '2');
+INSERT INTO `epidemics&treatments`.`treatment` (`idTreatment`, `Treatment options`, `idEpidemic`) VALUES ('3', 'None proven', '3');
+INSERT INTO `epidemics&treatments`.`treatment` (`idTreatment`, `Treatment options`, `idEpidemic`) VALUES ('4', 'rehydration, paracetamol', '4');
+INSERT INTO `epidemics&treatments`.`treatment` (`idTreatment`, `Treatment options`, `idEpidemic`) VALUES ('5 ', 'benzyl penicillin, intravenous fluids, mechanical ventilation', '5');
+INSERT INTO ‘epidemics&treatments’.’doctor’ (`idDoctor`, `Doctor first name`, `Doctor last name`, `idTreatment`) VALUES (55, 'Trever', 'Lawson', 2);
+INSERT INTO `epidemics&treatments`.`doctor` (`idDoctor`, `Doctor first name`, `Doctor last name`, `idTreatment`) VALUES ('43', 'Raven', 'Harvey', '3');
+INSERT INTO `epidemics&treatments`.`doctor` (`idDoctor`, `Doctor first name`, `Doctor last name`, `idTreatment`) VALUES ('87', 'Steven', 'Quinn', '5');
+INSERT INTO `epidemics&treatments`.`doctor` (`idDoctor`, `Doctor first name`, `Doctor last name`, `idTreatment`) VALUES ('94', 'Frederick', 'Young', '1');
+INSERT INTO `epidemics&treatments`.`doctor` (`idDoctor`, `Doctor first name`, `Doctor last name`, `idTreatment`) VALUES ('23', 'Dorian', 'Hart', '4');
